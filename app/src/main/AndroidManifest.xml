@@ -19,8 +19,6 @@
         </activity>
         <activity android:name=".Message">
         </activity>
-        <activity android:name=".MessageJava">
-        </activity>
     </application>
 
 </manifest>

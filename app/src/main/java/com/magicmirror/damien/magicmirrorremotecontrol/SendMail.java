@@ -71,7 +71,6 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
-
         //Creating a new session
         session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
@@ -93,10 +92,8 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
             mm.setSubject(subject);
             //Adding message
             mm.setText(message);
-
             //Sending email
             Transport.send(mm);
-
         } catch (MessagingException e) {
             e.printStackTrace();
         }
