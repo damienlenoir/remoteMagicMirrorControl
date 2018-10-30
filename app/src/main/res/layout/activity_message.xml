@@ -8,7 +8,7 @@
         tools:context=".Message">
 
     <EditText
-            android:id="@+id/fname"
+            android:id="@+id/monMessage"
             android:layout_width="333dp"
             android:layout_height="59dp"
             android:hint="Message"
@@ -24,5 +24,5 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/button"
             android:layout_marginBottom="108dp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"/>
+            app:layout_constraintHorizontal_bias="0.502" android:onClick="sendMessage"/>
 </android.support.constraint.ConstraintLayout>
