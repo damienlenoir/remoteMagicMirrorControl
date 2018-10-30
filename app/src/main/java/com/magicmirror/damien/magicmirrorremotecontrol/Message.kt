@@ -16,16 +16,10 @@ class Message : AppCompatActivity() {
 
     fun sendMessage(view: View) {
         val message = findViewById<EditText>(R.id.monMessage)
-        println("test print")
-        println(message.text)
-
-        val email = "mon.mirroir.magique@outlook.com"
-        val subject = "un test depuis android"
+        val stringMessage = message.text.toString()
+        val email = "mon.miroir.magique@outlook.com"
         val contenuMessage = ""
-
-        val sm = SendMail(this, email, subject, contenuMessage)
-
-        //Executing sendmail to send email
+        val sm = SendMail(this, email, stringMessage, contenuMessage)
         sm.execute()
     }
 }

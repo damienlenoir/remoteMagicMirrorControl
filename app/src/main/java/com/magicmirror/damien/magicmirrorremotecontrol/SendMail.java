@@ -72,11 +72,19 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
         //Creating a new session
+
         session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
+
+                        // TODO:
+                        // kotlin solution below not working because of file path in Conf.kt
+                        Conf conf = new Conf();
+                        return new PasswordAuthentication(conf.getEmail(), conf.getPassword());
+
+                     //   return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
+                        // JAVA solution with hard coded pw and login
                     }
                 });
 
