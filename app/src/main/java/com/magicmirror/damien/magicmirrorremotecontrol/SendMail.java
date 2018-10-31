@@ -47,7 +47,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     protected void onPreExecute() {
         super.onPreExecute();
         //Showing progress dialog while sending email
-        progressDialog = ProgressDialog.show(context,"Sending message","Please wait...",false,false);
+        progressDialog = ProgressDialog.show(context,"Connexion au Miroir Magique","Ouverture du tunnel quantique...",false,false);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         //Dismissing the progress dialog
         progressDialog.dismiss();
         //Showing a success message
-        Toast.makeText(context,"Message Sent",Toast.LENGTH_LONG).show();
+        Toast.makeText(context,"Terminé !",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -77,14 +77,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-
-                        // TODO:
-                        // kotlin solution below not working because of file path in Conf.kt
-                        Conf conf = new Conf();
-                        return new PasswordAuthentication(conf.getEmail(), conf.getPassword());
-
-                     //   return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
-                        // JAVA solution with hard coded pw and login
+                       return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
                     }
                 });
 
