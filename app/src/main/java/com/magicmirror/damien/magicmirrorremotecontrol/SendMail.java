@@ -25,6 +25,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     //Declaring Variables
     private Context context;
     private Session session;
+    private Boolean success;
 
     //Information to send email
     private String email;
@@ -41,6 +42,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         this.email = email;
         this.subject = subject;
         this.message = message;
+        this.success = true;
     }
 
     @Override
@@ -53,10 +55,9 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //Dismissing the progress dialog
         progressDialog.dismiss();
-        //Showing a success message
-        Toast.makeText(context,"Terminé !",Toast.LENGTH_LONG).show();
+        String toastMessage = (success) ? "Terminé !" : "Une erreur s'est produite !";
+        Toast.makeText(context,toastMessage,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -97,6 +98,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
             Transport.send(mm);
         } catch (MessagingException e) {
             e.printStackTrace();
+            success = false;
         }
         return null;
     }
