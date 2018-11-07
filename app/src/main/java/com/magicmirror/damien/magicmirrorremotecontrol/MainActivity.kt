@@ -13,11 +13,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun sendMessage(view: View) {
-        val message = findViewById<EditText>(R.id.monMessage)
+        var message = findViewById<EditText>(R.id.monMessage)
         val stringMessage = message.text.toString()
         val email = "mon.miroir.magique@outlook.com"
         val contenuMessage = ""
-        val sm = SendMail(this, email, stringMessage, contenuMessage)
+        val sm = SendMail(this, email, stringMessage, contenuMessage ) {
+                b ->  if (b) message.setText("")
+        }
         sm.execute()
     }
 }

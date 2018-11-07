@@ -3,9 +3,13 @@ package com.magicmirror.damien.magicmirrorremotecontrol;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.invoke.ConstantCallSite;
 import java.util.Properties;
+import java.util.function.Consumer;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -27,6 +31,8 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     private Session session;
     private Boolean success;
 
+
+    private Consumer<Boolean> callback;
     //Information to send email
     private String email;
     private String subject;
@@ -36,13 +42,14 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     private ProgressDialog progressDialog;
 
     //Class Constructor
-    public SendMail(Context context, String email, String subject, String message){
+    public SendMail(Context context, String email, String subject, String message, Consumer<Boolean> callback){
         //Initializing variables
         this.context = context;
         this.email = email;
         this.subject = subject;
         this.message = message;
         this.success = true;
+        this.callback = callback;
     }
 
     @Override
@@ -58,6 +65,10 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         progressDialog.dismiss();
         String toastMessage = (success) ? "Terminé !" : "Une erreur s'est produite !";
         Toast.makeText(context,toastMessage,Toast.LENGTH_LONG).show();
+        if (callback != null) {
+            callback.accept(success);
+        }
+
     }
 
     @Override
